@@ -1,26 +1,40 @@
-(function(){
-	var app = angular.module('store', [ ]);
-	
-	app.controller('StoreController', function(){
-		this.products = gems;
-	});
-	var gems = [ 
-		{
-			name: 'Product 1',
-			price: 2,
-			description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum',
-			canPurchase: true,
-			soldOut: false,
-			image: 'image/sunset_lady.jpg'
+var awesomeToDo = angular.module('awesomeToDo', ['ngRoute']);
 
-		},
-		{
-			name: 'Product 2',
-			price: 3,
-			description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum',
-			canPurchase: true,
-			soldOut: false,
-			image: 'image/sunset_lady.jpg'
-		}
-	];
-})();
+	awesomeToDo.config(function($routeProvider, $locationProvider) {
+		$routeProvider
+
+			// home page
+			.when('/', {
+				templateUrl : 'pages/home.html',
+				controller  : 'homeController'
+			})
+
+			// login page
+			.when('/login', {
+				templateUrl : 'pages/login.html',
+				controller  : 'authController'
+			})
+
+			// register page
+			.when('/register', {
+				templateUrl : 'pages/register.html',
+				controller  : 'authController'
+			})
+
+			// edit profile page
+			.when('/edit_profile', {
+				templateUrl : 'pages/edit_profile.html',
+				controller  : 'authController'
+			});
+	});
+
+	awesomeToDo.controller('homeController', function($scope) {
+		// create a message to display in our view
+		$scope.message = 'Everyone come and see how good I look!';
+	});
+
+	awesomeToDo.controller('authController', function($scope) {
+		$scope.message = 'Look! I am an about page.';
+	});
+
+	
